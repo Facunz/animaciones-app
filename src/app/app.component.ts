@@ -13,23 +13,23 @@ import { trigger, transition, style, animate, query, animateChild, group, state,
     // Fade In / Fade Out (Aparecer / Desvanecer)
     trigger('fadeInOut', [
       state('in', style({ opacity: 1 })),
-      state('out', style({ opacity: 0.3 })),
-      transition('in => out', animate('500ms ease-in')),
-      transition('out => in', animate('800ms ease-out'))
+      state('out', style({ opacity: 0 })),
+      transition('in => out', animate('1000ms ease-in')),
+      transition('out => in', animate('200ms ease-out'))
     ]),
 
     // Slide In / Slide Out (Deslizar Dentro / Fuera)
     trigger('slideInOut', [
       state('in', style({ transform: 'translateX(-10)' })),
-      state('out', style({ transform: 'translateX(-500px)' })),
+      state('out', style({ transform: 'translateX(100px)' })),
       transition('in => out', animate('100ms ease-in')),
-      transition('out => in', animate('400ms ease-out'))
+      transition('out => in', animate('1000ms ease-out'))
     ]),
 
     // Expand/Collapse (Expandir/Contraer)
     trigger('expandCollapse', [
       state('expanded', style({ transform: 'scale(1)' })),
-      state('collapsed', style({ transform: 'scale(0.8)' })),
+      state('collapsed', style({ transform: 'scale(0.1)' })),
       transition('expanded => collapsed', animate('300ms ease-in')),
       transition('collapsed => expanded', animate('300ms ease-out'))
     ]),
@@ -38,7 +38,7 @@ import { trigger, transition, style, animate, query, animateChild, group, state,
     trigger('listStagger', [
       state('normal', style({ transform: 'translateY(10)' })),
       state('bounced', style({ transform: 'translateY(-90px)' })),
-      transition('normal => bounced', animate('1000ms ease-out', keyframes([
+      transition('normal => bounced', animate('10000ms ease-out', keyframes([
         style({ transform: 'translateY(-10)', offset: 0 }),
         style({ transform: 'translateY(-90px)', offset: 0.3 }),
         style({ transform: 'translateY(-50px)', offset: 1 })
@@ -48,8 +48,8 @@ import { trigger, transition, style, animate, query, animateChild, group, state,
 
     // Rotate (Rotar)
     trigger('rotate', [
-      state('normal', style({ transform: 'rotate(10deg)' })),
-      state('rotated', style({ transform: 'rotate(15deg)' })),
+      state('normal', style({ transform: 'rotate(1deg)' })),
+      state('rotated', style({ transform: 'rotate(360deg)' })),
       transition('normal => rotated', animate('400ms ease-in')),
       transition('rotated => normal', animate('400ms ease-out'))
     ]),
@@ -57,17 +57,17 @@ import { trigger, transition, style, animate, query, animateChild, group, state,
     // Zoom In/Out (Acercar/Alejar)
     trigger('zoomInOut', [
       state('normal', style({ transform: 'scale(1)' })),
-      state('zoomed', style({ transform: 'scale(2.2)' })),
+      state('zoomed', style({ transform: 'scale(1.2)' })),
       transition('normal => zoomed', animate('350ms ease-in')),
       transition('zoomed => normal', animate('350ms ease-out'))
     ]),
 
     // Flip (Voltear en eje Y)
     trigger('flip', [
-      state('normal', style({ transform: 'rotateY(0deg)' })),
-      state('flipped', style({ transform: 'rotateY(0deg)' })),
+      state('normal', style({ transform: 'rotateY(60deg)' })),
+      state('flipped', style({ transform: 'rotateY(360deg)' })),
       transition('normal => flipped', animate('600ms ease-in-out')),
-      transition('flipped => normal', animate('600ms ease-in-out'))
+      transition('flipped => normal', animate('1000ms ease-in-out'))
     ]),
 
     // Shake (Temblar) - al error (en error)
@@ -82,9 +82,9 @@ import { trigger, transition, style, animate, query, animateChild, group, state,
         style({ transform: 'translateX(10px)', offset: 0.4 }),
         style({ transform: 'translateX(-10px)', offset: 0.5 }),
         style({ transform: 'translateX(10px)', offset: 0.6 }),
-        style({ transform: 'translateX(-10px)', offset: 0.7 }),
+        style({ transform: 'translateX(500px)', offset: 0.7 }),
         style({ transform: 'translateX(10px)', offset: 0.8 }),
-        style({ transform: 'translateX(-60px)', offset: 0.9 }),
+        style({ transform: 'translateX(-400px)', offset: 0.9 }),
         style({ transform: 'translateX(0)', offset: 1 })
       ]))),
       transition('shaking => normal', animate('500ms ease-out'))
@@ -101,17 +101,17 @@ import { trigger, transition, style, animate, query, animateChild, group, state,
         style({ transform: 'scale(1.9)', offset: 0.75 }),
         style({ transform: 'scale(1)', offset: 1 })
       ]))),
-      transition('pulsing => normal', animate('5000ms ease-out'))
+      transition('pulsing => normal', animate('20000ms ease-out'))
     ]),
 
     // Transicion entre ventanas (Transition between windows) - slide from left to right (deslizar de izquierda a derecha)
     trigger('slideTransition', [
       transition(':enter', [
         style({ transform: 'translateX(-100%)', opacity: 0 }),
-        animate('100ms ease-out', style({ transform: 'translateX(0)', opacity: 0.3 }))
+        animate('500ms ease-out', style({ transform: 'translateX(0)', opacity: 0.3 }))
       ]),
       transition(':leave', [
-        animate('100ms ease-in', style({ transform: 'translateX(100%)', opacity: 0 }))
+        animate('500ms ease-in', style({ transform: 'translateX(100%)', opacity: 0 }))
       ])
     ]),
 
@@ -135,7 +135,7 @@ import { trigger, transition, style, animate, query, animateChild, group, state,
         query(':leave', animateChild(), { optional: true }),
         group([
           query(':leave', [
-            animate('3000ms ease-out', style({ left: '-100%', opacity: 0 }))
+            animate('5000ms ease-out', style({ left: '-100%', opacity: 0 }))
           ], { optional: true }),
           query(':enter', [
             animate('1500ms ease-out', style({ left: '0%', opacity: 1 }))
@@ -148,8 +148,8 @@ import { trigger, transition, style, animate, query, animateChild, group, state,
 })
 export class AppComponent {
   fadeState = 'out';
-  slideState = 'out';
-  expandState = 'collapsed';
+  slideState = 'in';
+  expandState = 'expanded';
   staggerState = 'bounced';
   rotateState = 'rotated';
   zoomState = 'zoomed';

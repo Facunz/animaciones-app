@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
       <div class="game-info">
         <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=300&h=200&fit=crop&crop=center" alt="Detalles del Juego">
         <div class="info-text">
-          <h3>ddd</h3>
+          <h3>Marios Bros 2</h3>
           <p>Un clásico de Nintendo donde Mario debe rescatar a la Princesa Peach de las garras de Bowser.</p>
           <p>Género: Plataformas</p>
           <p>Año: 1985</p>
